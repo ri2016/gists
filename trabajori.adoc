@@ -237,14 +237,10 @@ Lista de jugadores ordenada por número de puntos
 
 [source,cypher]
 ----
-MATCH (m:Musician)-[r]->(b:Band)
-WITH m, count(r) as maxnumber
-ORDER BY maxnumber DESC LIMIT 1
-MATCH (a:Musician)-[ra]->(xa:Band)
-WITH a, count(ra) as number,xa,maxnumber
-ORDER BY xa.band
-WHERE maxnumber = number
-RETURN a.name,number,xa.name
+MATCH (n:PLAYER)
+WITH n.name as name, toInt(n.Points) AS points
+RETURN name, points
+ORDER BY points DESC
 ----
 //table
 
