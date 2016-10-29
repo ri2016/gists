@@ -1,0 +1,311 @@
+= TeamWork
+:author: TrabajoRI
+
+
+
+*Table of Contents*
+
+* *Inicialización de la base de datos*
+* *Consultas*
+** *Elementales*
+** *Intermedias*
+** *Avanzadas*
+
+= Trabajo RI
+
+=== Inicialización de la base de datos
+
+Script que inicializa la base de datos usando el lenguaje Cypher.
+
+//setup
+[source,cypher]
+----
+create (_0:`TEAM` {`name`:"Fenerbahçe", `president`:"Aziz Yildirim", `yearOfFundation`:1913})
+create (_1:`TEAM` {`name`:"Lokomotiv Kuban", `president`:"Andrei Vedishev", `yearOfFundation`:1946})
+create (_2:`TEAM` {`name`:"Laboral Kutxa", `president`:"Josean Querejeta", `yearOfFundation`:1959})
+create (_3:`TEAM` {`name`:"CSKA Moscow", `president`:"Andrei Vatutin", `yearOfFundation`:1924})
+create (_4:`REFEREE` {`Country`:"Greece", `name`:"Christos Christodoluou"})
+create (_5:`REFEREE` {`Country`:"Italy", `name`:"Luigi Lamonica"})
+create (_6:`REFEREE` {`Country`:"Germany", `name`:"Robert Lottermoser"})
+create (_7:`REFEREE` {`Country`:"Slovakia", `name`:"Damir Javor"})
+create (_8:`REFEREE` {`Country`:"Ukraine", `name`:"Borys Rhyzhyk"})
+create (_9:`REFEREE` {`Country`:"Latvia", `name`:"Oļegs Latiševs"})
+create (_10:`REFEREE` {`Country`:"Poland", `name`:"Piotr Pastusiak"})
+create (_11:`COACH` {`name`:"Željko Obradović", `titles`:["8 Euroleague", "1 Yugoslavian Cup", "1 Yugoslavian League", "10 Greek League"]})
+create (_12:`COACH` {`name`:"Dimitrios Itoudis", `titles`:["1 Euroleague", "1 Euroleague Coach of the Year", "2 Russian League"]})
+create (_14:`COACH` {`name`:"Georgios Bartzokas", `titles`:["1 Euroleague"]})
+create (_15:`PLAYER` {`Assists`:"11", `Country`:"France", `Points`:"52", `Position`:"Point Guard", `Rebounds`:"5", `Team`:"CSKA Moscow", `name`:"Nando de Colo"})
+create (_16:`PLAYER` {`Assists`:"4", `Country`:"United States", `Points`:"19", `Position`:"Shooting Guard", `Rebounds`:"3", `Team`:"CSKA Moscow", `name`:"Cory Higgins"})
+create (_17:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"8", `Position`:"Small Forward", `Rebounds`:"10", `Team`:"CSKA Moscow", `name`:"Nikita Kurbanov"})
+create (_18:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"20", `Position`:"Power Forward", `Rebounds`:"7", `Team`:"CSKA Moscow", `name`:"Andrey Vorontsevich"})
+create (_19:`PLAYER` {`Assists`:"5", `Country`:"United States", `Points`:"23", `Position`:"Center", `Rebounds`:"11", `Team`:"CSKA Moscow", `name`:"Kyle Hines"})
+create (_20:`PLAYER` {`Assists`:"13", `Country`:"Serbia", `Points`:"27", `Position`:"Point Guard", `Rebounds`:"6", `Team`:"CSKA Moscow", `name`:"Miloš Teodosic"})
+create (_21:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"13", `Position`:"Shooting Guard", `Rebounds`:"1", `Team`:"CSKA Moscow", `name`:"Vitaly Fridzon"})
+create (_22:`PLAYER` {`Assists`:"0", `Country`:"Serbia", `Points`:"0", `Position`:"Power Forward", `Rebounds`:"1", `Team`:"CSKA Moscow", `name`:"Demetris Nichols"})
+create (_23:`PLAYER` {`Assists`:"1", `Country`:"United States", `Points`:"8", `Position`:"Point Guard", `Rebounds`:"1", `Team`:"CSKA Moscow", `name`:"Aaron Jackson"})
+create (_24:`PLAYER` {`Assists`:"1", `Country`:"Russia", `Points`:"0", `Position`:"Center", `Rebounds`:"2", `Team`:"CSKA Moscow", `name`:"Pavel Korobkov"})
+create (_25:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"0", `Position`:"Shooting Guard", `Rebounds`:"0", `Team`:"CSKA Moscow", `name`:"Mikhail Kulagin"})
+create (_26:`PLAYER` {`Assists`:"4", `Country`:"Russia", `Points`:"19", `Position`:"Power Forward", `Rebounds`:"5", `Team`:"CSKA Moscow", `name`:"Victor Khryapa"})
+create (_27:`PLAYER` {`Assists`:"13", `Country`:"United States", `Points`:"44", `Position`:"Point Guard", `Rebounds`:"8", `Team`:"Laboral Kutxa", `name`:"Darius Adams"})
+create (_28:`PLAYER` {`Assists`:"1", `Country`:"Hungary", `Points`:"13", `Position`:"Shooting Guard", `Rebounds`:"12", `Team`:"Laboral Kutxa", `name`:"Ádám Hanga"})
+create (_29:`PLAYER` {`Assists`:"2", `Country`:"Latvia", `Points`:"15", `Position`:"Small Forward", `Rebounds`:"2", `Team`:"Laboral Kutxa", `name`:"Dāvis Bertāns"})
+create (_30:`PLAYER` {`Assists`:"2", `Country`:"France", `Points`:"20", `Position`:"Power Forward", `Rebounds`:"9", `Team`:"Laboral Kutxa", `name`:"Kim Tillie"})
+create (_31:`PLAYER` {`Assists`:"1", `Country`:"Serbia", `Points`:"5", `Position`:"Center", `Rebounds`:"4", `Team`:"Laboral Kutxa", `name`:"Darko Planinić"})
+create (_32:`PLAYER` {`Assists`:"6", `Country`:"Serbia", `Points`:"8", `Position`:"Point Guard", `Rebounds`:"2", `Team`:"Laboral Kutxa", `name`:"Mike James"})
+create (_33:`PLAYER` {`Assists`:"0", `Country`:"Spain", `Points`:"0", `Position`:"Power Forward", `Rebounds`:"0", `Team`:"Laboral Kutxa", `name`:"Mamadou Diop"})
+create (_34:`PLAYER` {`Assists`:"0", `Country`:"France", `Points`:"0", `Position`:"Shooting Guard", `Rebounds`:"0", `Team`:"Laboral Kutxa", `name`:"Fabien Causeur"})
+create (_35:`PLAYER` {`Assists`:"3", `Country`:"Greece", `Points`:"27", `Position`:"Center", `Rebounds`:"12", `Team`:"Laboral Kutxa", `name`:"Ioannis Bourousis"})
+create (_36:`PLAYER` {`Assists`:"1", `Country`:"Serbia", `Points`:"13", `Position`:"Small Forward", `Rebounds`:"5", `Team`:"Laboral Kutxa", `name`:"Jaka Blažič"})
+create (_37:`PLAYER` {`Assists`:"0", `Country`:"Spain", `Points`:"4", `Position`:"Center", `Rebounds`:"3", `Team`:"Laboral Kutxa", `name`:"Ilimane Diop"})
+create (_38:`PLAYER` {`Assists`:"", `Country`:"Spain", `Points`:"3", `Position`:"Small Forward", `Rebounds`:"0", `Team`:"Laboral Kutxa", `name`:"Alberto Corbacho"})
+create (_39:`PLAYER` {`Assists`:"8", `Country`:"United States", `Points`:"47", `Position`:"Point Guard", `Rebounds`:"8", `Team`:"Lokomotiv Kuban", `name`:"Malcolm Delaney"})
+create (_40:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"0", `Position`:"Shooting Guard", `Rebounds`:"1", `Team`:"Lokomotiv Kuban", `name`:"Evgeny Voronov"})
+create (_41:`PLAYER` {`Assists`:"4", `Country`:"Australia", `Points`:"31", `Position`:"Small Forward", `Rebounds`:"11", `Team`:"Lokomotiv Kuban", `name`:"Ryan Broekhoff"})
+create (_42:`PLAYER` {`Assists`:"5", `Country`:"Spain", `Points`:"12", `Position`:"Power Forward", `Rebounds`:"11", `Team`:"Lokomotiv Kuban", `name`:"Victor Claver"})
+create (_43:`PLAYER` {`Assists`:"1", `Country`:"United States", `Points`:"13", `Position`:"Center", `Rebounds`:"11", `Team`:"Lokomotiv Kuban", `name`:"Anthony Randolph"})
+create (_44:`PLAYER` {`Assists`:"3", `Country`:"United States", `Points`:"16", `Position`:"Power Forward", `Rebounds`:"12", `Team`:"Lokomotiv Kuban", `name`:"Chris Singleton"})
+create (_45:`PLAYER` {`Assists`:"1", `Country`:"Croatia", `Points`:"19", `Position`:"Point Guard", `Rebounds`:"1", `Team`:"Lokomotiv Kuban", `name`:"Dontaye Draper"})
+create (_46:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"0", `Position`:"Point Guard", `Rebounds`:"0", `Team`:"Lokomotiv Kuban", `name`:"Sergey Bykov"})
+create (_47:`PLAYER` {`Assists`:"1", `Country`:"United States", `Points`:"17", `Position`:"Shooting Guard", `Rebounds`:"1", `Team`:"Lokomotiv Kuban", `name`:"Matt Janning"})
+create (_48:`PLAYER` {`Assists`:"2", `Country`:"Russia", `Points`:"11", `Position`:"Power Forward", `Rebounds`:"2", `Team`:"Lokomotiv Kuban", `name`:"Andrey Zubkov"})
+create (_49:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"0", `Position`:"Power Forward", `Rebounds`:"0", `Team`:"Lokomotiv Kuban", `name`:"Nikita Balashkov"})
+create (_50:`PLAYER` {`Assists`:"0", `Country`:"Russia", `Points`:"0", `Position`:"Point Guard", `Rebounds`:"0", `Team`:"Lokomotiv Kuban", `name`:"Maxim Kolyushkin"})
+create (_51:`PLAYER` {`Assists`:"0", `Country`:"Turkey", `Points`:"20", `Position`:"Point Guard", `Rebounds`:"9", `Team`:"Fenerbahçe", `name`:"Bobby Dixon"})
+create (_52:`PLAYER` {`Assists`:"6", `Country`:"Serbia", `Points`:"24", `Position`:"Shooting Guard", `Rebounds`:"9", `Team`:"Fenerbahçe", `name`:"Bogdan Bogdanović"})
+create (_53:`PLAYER` {`Assists`:"5", `Country`:"Italy", `Points`:"31", `Position`:"Small Forward", `Rebounds`:"12", `Team`:"Fenerbahçe", `name`:"Luigi Datome"})
+create (_54:`PLAYER` {`Assists`:"2", `Country`:"Republic Of Macedonia", `Points`:"24", `Position`:"Power Forward", `Rebounds`:"8", `Team`:"Fenerbahçe", `name`:"Pero Antić"})
+create (_55:`PLAYER` {`Assists`:"4", `Country`:"United States", `Points`:"30", `Position`:"Center", `Rebounds`:"13", `Team`:"Fenerbahçe", `name`:"Ekpe Udoh"})
+create (_56:`PLAYER` {`Assists`:"6", `Country`:"Georgia", `Points`:"8", `Position`:"Point Guard", `Rebounds`:"1", `Team`:"Fenerbahçe", `name`:"Ricky Hickman"})
+create (_57:`PLAYER` {`Assists`:"0", `Country`:"Turkey", `Points`:"0", `Position`:"Power Forward", `Rebounds`:"0", `Team`:"Fenerbahçe", `name`:"Barış Hersek"})
+create (_58:`PLAYER` {`Assists`:"0", `Country`:"Turkey", `Points`:"0", `Position`:"Shooting Guard", `Rebounds`:"0", `Team`:"Fenerbahçe", `name`:"Melih Mahmutoğlu"})
+create (_59:`PLAYER` {`Assists`:"0", `Country`:"Turkey", `Points`:"0", `Position`:"Point Guard", `Rebounds`:"0", `Team`:"Fenerbahçe", `name`:"Berk Uğurlu"})
+create (_60:`PLAYER` {`Assists`:"7", `Country`:"Greece", `Points`:"23", `Position`:"Point Guard", `Rebounds`:"7", `Team`:"Fenerbahçe", `name`:"Kostas Sloukas"})
+create (_61:`PLAYER` {`Assists`:"2", `Country`:"Czech Republic", `Points`:"21", `Position`:"Power Forward", `Rebounds`:"8", `Team`:"Fenerbahçe", `name`:"Jan Veselý"})
+create (_62:`PLAYER` {`Assists`:"3", `Country`:"Serbia", `Points`:"3", `Position`:"Small Forward", `Rebounds`:"5", `Team`:"Fenerbahçe", `name`:"Nikola Kalinić"})
+create (_63:`MATCH` {`Attendance`:"11261", `Home`:"CSKA Moscow", `Quarter_1`:"23-12", `Quarter_2`:"24-25", `Quarter_3`:"21-22", `Quarter_4`:"20-22", `Result`:"88-81", `Tip_Off`:"18:00(CEST)", `Visitor`:"Lokomotiv Kuban", `name`:"Semifinal A"})
+create (_64:`MATCH` {`Attendance`:"11216", `Home`:"Fenerbahçe", `Overtime`:"16-5", `Quarter_1`:"23-15", `Quarter_2`:"18-25", `Quarter_3`:"14-17", `Quarter_4`:"17-15", `Result`:"88-77", `Tip_Off`:"21:00(CEST)", `Visitor`:"Laboral Kutxa", `name`:"Semifinal B"})
+create (_65:`MATCH` {`Attendance`:"10658", `Home`:"Laboral Kutxa", `Quarter_1`:"16-20", `Quarter_2`:"26-20", `Quarter_3`:"11-21", `Quarter_4`:"22-24", `Result`:"75-85", `Tip_Off`:"17:00(CEST)", `Visitor`:"Lokomotiv Kuban", `name`:"Third Place"})
+create (_66:`MATCH` {`Attendance`:"12250", `Home`:"Fenerbahçe", `Overtime`:"13-18", `Quarter_1`:"20-22", `Quarter_2`:"10-28", `Quarter_3`:"23-19", `Quarter_4`:"30-14", `Result`:"96-101", `Tip_Off`:"20:00(CEST)", `Visitor`:"CSKA Moscow", `name`:"Final"})
+create (_67:`ARENA` {`Capacity`:"14500", `Construction`:"2006", `Construction_Cost`:"€ 165 million", `Operator`:"AEG", `name`:"Mercedes-Benz Arena"})
+create (_69:`COACH` {`name`:"Velimir Perasović", `titles`:["1 Spanish Cup", "1 Spanish Supercup", "1 Eurocup", "2 Croatian League"]})
+create (_0)-[:`DISPUTES`]->(_66)
+create (_0)-[:`DISPUTES`]->(_63)
+create (_1)-[:`DISPUTES`]->(_65)
+create (_1)-[:`DISPUTES`]->(_63)
+create (_2)-[:`DISPUTES`]->(_65)
+create (_2)-[:`DISPUTES`]->(_64)
+create (_3)-[:`DISPUTES`]->(_66)
+create (_3)-[:`DISPUTES`]->(_63)
+create (_4)-[:`REFEREES`]->(_65)
+create (_4)-[:`REFEREES`]->(_64)
+create (_5)-[:`REFEREES`]->(_66)
+create (_5)-[:`REFEREES`]->(_63)
+create (_6)-[:`REFEREES`]->(_66)
+create (_6)-[:`REFEREES`]->(_63)
+create (_7)-[:`REFEREES`]->(_66)
+create (_7)-[:`REFEREES`]->(_63)
+create (_8)-[:`REFEREES`]->(_65)
+create (_8)-[:`REFEREES`]->(_64)
+create (_9)-[:`REFEREES`]->(_64)
+create (_10)-[:`REFEREES`]->(_65)
+create (_11)-[:`TRAINS`]->(_0)
+create (_12)-[:`TRAINS`]->(_3)
+create (_14)-[:`TRAINS`]->(_1)
+create (_15)-[:`PLAYS_FOR`]->(_3)
+create (_16)-[:`PLAYS_FOR`]->(_3)
+create (_17)-[:`PLAYS_FOR`]->(_3)
+create (_18)-[:`PLAYS_FOR`]->(_3)
+create (_19)-[:`PLAYS_FOR`]->(_3)
+create (_20)-[:`PLAYS_FOR`]->(_3)
+create (_21)-[:`PLAYS_FOR`]->(_3)
+create (_22)-[:`PLAYS_FOR`]->(_3)
+create (_23)-[:`PLAYS_FOR`]->(_3)
+create (_24)-[:`PLAYS_FOR`]->(_3)
+create (_25)-[:`PLAYS_FOR`]->(_3)
+create (_26)-[:`PLAYS_FOR`]->(_3)
+create (_27)-[:`PLAYS_FOR`]->(_2)
+create (_28)-[:`PLAYS_FOR`]->(_2)
+create (_29)-[:`PLAYS_FOR`]->(_2)
+create (_30)-[:`PLAYS_FOR`]->(_2)
+create (_31)-[:`PLAYS_FOR`]->(_2)
+create (_32)-[:`PLAYS_FOR`]->(_2)
+create (_33)-[:`PLAYS_FOR`]->(_2)
+create (_34)-[:`PLAYS_FOR`]->(_2)
+create (_35)-[:`PLAYS_FOR`]->(_2)
+create (_36)-[:`PLAYS_FOR`]->(_2)
+create (_37)-[:`PLAYS_FOR`]->(_2)
+create (_38)-[:`PLAYS_FOR`]->(_2)
+create (_39)-[:`PLAYS_FOR`]->(_1)
+create (_40)-[:`PLAYS_FOR`]->(_1)
+create (_41)-[:`PLAYS_FOR`]->(_1)
+create (_42)-[:`PLAYS_FOR`]->(_1)
+create (_43)-[:`PLAYS_FOR`]->(_1)
+create (_44)-[:`PLAYS_FOR`]->(_1)
+create (_45)-[:`PLAYS_FOR`]->(_1)
+create (_46)-[:`PLAYS_FOR`]->(_1)
+create (_47)-[:`PLAYS_FOR`]->(_1)
+create (_48)-[:`PLAYS_FOR`]->(_1)
+create (_49)-[:`PLAYS_FOR`]->(_1)
+create (_50)-[:`PLAYS_FOR`]->(_1)
+create (_51)-[:`PLAYS_FOR`]->(_0)
+create (_52)-[:`PLAYS_FOR`]->(_0)
+create (_53)-[:`PLAYS_FOR`]->(_0)
+create (_54)-[:`PLAYS_FOR`]->(_0)
+create (_55)-[:`PLAYS_FOR`]->(_0)
+create (_56)-[:`PLAYS_FOR`]->(_0)
+create (_57)-[:`PLAYS_FOR`]->(_0)
+create (_58)-[:`PLAYS_FOR`]->(_0)
+create (_59)-[:`PLAYS_FOR`]->(_0)
+create (_60)-[:`PLAYS_FOR`]->(_0)
+create (_61)-[:`PLAYS_FOR`]->(_0)
+create (_62)-[:`PLAYS_FOR`]->(_0)
+create (_63)-[:`TAKES_PLACE_IN`]->(_67)
+create (_64)-[:`TAKES_PLACE_IN`]->(_67)
+create (_65)-[:`TAKES_PLACE_IN`]->(_67)
+create (_66)-[:`TAKES_PLACE_IN`]->(_67)
+create (_69)-[:`TRAINS`]->(_2)
+
+RETURN *
+----
+
+'''
+
+=== Visualización de la base de datos
+//graph
+
+'''
+
+=== Elementales
+
+===== Consulta 
+
+Todos los jugadores en posición "Shooting Guard"
+
+[source,cypher]
+----
+MATCH (n:PLAYER {Position: "Shooting Guard"})
+RETURN n.name;
+----
+//table
+
+'''
+
+===== Consulta
+
+Todos los jugadores del Lokomotiv Kuban.
+
+[source,cypher]
+----
+MATCH (n:PLAYER {Team: "Lokomotiv Kuban"})
+RETURN n;
+----
+//table
+
+'''
+
+===== Consulta 
+
+Numero de asistentes a todos los partidos
+
+[source,cypher]
+----
+MATCH (n:MATCH)
+RETURN sum(toInt(n.Attendance));
+----
+//table
+
+'''
+
+===== Consulta 
+
+En qué equipo juega Malcolm Delaney
+
+[source,cypher]
+----
+MATCH (n:TEAM)<-[:PLAYS_FOR]-(m:PLAYER {name: "Malcolm Delaney"})
+RETURN n;
+----
+//table
+
+'''
+
+=== Intermedias
+
+===== Consulta 
+
+Lista de jugadores ordenada por número de puntos
+
+[source,cypher]
+----
+MATCH (m:Musician)-[r]->(b:Band)
+WITH m, count(r) as maxnumber
+ORDER BY maxnumber DESC LIMIT 1
+MATCH (a:Musician)-[ra]->(xa:Band)
+WITH a, count(ra) as number,xa,maxnumber
+ORDER BY xa.band
+WHERE maxnumber = number
+RETURN a.name,number,xa.name
+----
+//table
+
+'''
+
+===== Consulta 
+
+Equipos arbitrados por Damir Javor.
+
+[source,cypher]
+----
+MATCH (n:MATCH)<-[:REFEREES]-(r:REFEREE {name: "Damir Javor"})
+WITH n as matchs
+MATCH (t:TEAM)-[:DISPUTES]->(matchs)
+RETURN DISTINCT t.name
+----
+//table
+
+'''
+
+=== Avanzadas
+
+===== Consulta 
+
+Jugadores que han disputado contra Malcolm Delaney.
+
+[source,cypher]
+----
+MATCH (n:PLAYER)-[:PLAYS_FOR]-(t:TEAM)-[:DISPUTES]-(z:MATCH)-[:DISPUTES]-(d:TEAM)-[:PLAYS_FOR]-(m:PLAYER {name: "Malcolm Delaney"})
+RETURN DISTINCT n.name
+----
+//table
+
+'''
+===== Query 
+
+Returns the path traversed in order to know the minimum number of people ( friends of friends of...)
+that needs Mario to meet in order to know someone who listens to a band involved in the "Electronic" music.
+
+[source,cypher]
+----
+MATCH (mario:User { name: "Mario" }),(electronic:Genre { name: "Electronic" }),
+p = shortestpath((mario)-[*]-(electronic))
+return p
+----
+//table
+
+'''
+
+===== Query 
+
+Returns the average age of the year of formation of all the bands Dio was involved.
+
+[source,cypher]
+----
+MATCH (m:Band)<-[:Plays]-(:Musician {name: 'Ronnie James Dio'})
+WITH collect( m ) as t
+RETURN reduce(totalAge = 0, n IN t| totalAge + n.formed)/length( t ) AS reduction
+----
+//table
+
+'''
+
+
