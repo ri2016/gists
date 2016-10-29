@@ -279,33 +279,5 @@ RETURN DISTINCT n.name
 //table
 
 '''
-===== Query 
-
-Returns the path traversed in order to know the minimum number of people ( friends of friends of...)
-that needs Mario to meet in order to know someone who listens to a band involved in the "Electronic" music.
-
-[source,cypher]
-----
-MATCH (mario:User { name: "Mario" }),(electronic:Genre { name: "Electronic" }),
-p = shortestpath((mario)-[*]-(electronic))
-return p
-----
-//table
-
-'''
-
-===== Query 
-
-Returns the average age of the year of formation of all the bands Dio was involved.
-
-[source,cypher]
-----
-MATCH (m:Band)<-[:Plays]-(:Musician {name: 'Ronnie James Dio'})
-WITH collect( m ) as t
-RETURN reduce(totalAge = 0, n IN t| totalAge + n.formed)/length( t ) AS reduction
-----
-//table
-
-'''
 
 
