@@ -279,5 +279,19 @@ RETURN DISTINCT n.name
 //table
 
 '''
+===== Consulta 
 
+Equipos ordenados por el número de puntos de sus jugadores.
+
+[source,cypher]
+----
+MATCH (p:PLAYER)-[:PLAYS_FOR]->(t:TEAM) 
+WITH t.name as teamname, collect(toInt(p.Points)) AS points 
+RETURN teamname AS Equipo, reduce(total = 0, part IN points | total + part) AS Puntos 
+ORDER BY Puntos DESC
+
+----
+//table
+
+'''
 
